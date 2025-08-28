@@ -1,4 +1,3 @@
-// src/utils/localStorage.js
 
 // Guardar datos en localStorage
 export function saveToLocalStorage(key, data) {

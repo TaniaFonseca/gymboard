@@ -8,7 +8,6 @@ export default function Profile() {
 
   return (
     <div className="mt-6">
-      <h2 className="text-xl font-bold mb-4">Perfil</h2>
       <ProfileForm onSubmit={handleSubmit} />
     </div>
   );
