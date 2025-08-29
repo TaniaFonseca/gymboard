@@ -18,17 +18,8 @@ export default function RoutineCard({ routine, onMarcarCumplida, onDelete, onEdi
           ✅ Cumplida
         </button>
 
-        <button
-          onClick={() => {
-            const nuevoTitulo = prompt("Nuevo título:", routine.title);
-            const nuevaDescripcion = prompt("Nueva descripción:", routine.description);
-            if (nuevoTitulo || nuevaDescripcion) {
-              onEdit(routine.id, {
-                title: nuevoTitulo || routine.title,
-                description: nuevaDescripcion || routine.description,
-              });
-            }
-          }}
+         <button
+          onClick={() => onEdit(routine)}   
           className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
         >
           ✏️ Editar

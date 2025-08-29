@@ -11,6 +11,7 @@ const EXERCISES_KEY = "exercises";
 export default function Routines() {
   const [routines, setRoutines] = useState([]);
   const [exercisesList, setExercisesList] = useState([]);
+  const [editingRoutine, setEditingRoutine] = useState(null);
 
   useEffect(() => {
     // cargar rutinas
@@ -28,20 +29,31 @@ export default function Routines() {
     saveToLocalStorage(ROUTINES_KEY, next);
   };
 
-  const handleCreateRoutine = (newRoutine) => {
-    const next = [
-      ...routines,
-      {
-        id: routines.length ? Math.max(...routines.map((r) => r.id)) + 1 : 1,
-        title: newRoutine.title,
-        description: newRoutine.description,
-        exercises: newRoutine.exercises,
-        detallesCumplimiento: [],
-        comments: [],
-      },
-    ];
-    persist(next);
-    alert("Rutina guardada ✅");
+  const handleCreateOrUpdateRoutine = (routine) => {
+    if (editingRoutine) {
+      // Modo edición
+      const updated = routines.map((r) =>
+        r.id === editingRoutine.id ? { ...r, ...routine } : r
+      );
+      persist(updated);
+      setEditingRoutine(null);
+      alert("Rutina actualizada ✏️");
+    } else {
+      // Nueva rutina
+      const next = [
+        ...routines,
+        {
+          id: routines.length ? Math.max(...routines.map((r) => r.id)) + 1 : 1,
+          title: routine.title,
+          description: routine.description,
+          exercises: routine.exercises,
+          detallesCumplimiento: [],
+          comments: [],
+        },
+      ];
+      persist(next);
+      alert("Rutina guardada ✅");
+    }
   };
 
   const handleMarcarCumplida = (id) => {
@@ -67,22 +79,19 @@ export default function Routines() {
   }
 };
 
-const handleEditRoutine = (id, updatedData) => {
-  const next = routines.map((r) =>
-    r.id === id ? { ...r, ...updatedData } : r
-  );
-  persist(next);
-  alert("Rutina actualizada ✏️");
-};
+  const handleEditRoutine = (routine) => {
+    setEditingRoutine(routine);
+  };
 
   return (
     <div className="mt-6">
       <h2 className="text-xl font-bold mb-4">Rutinas</h2>
 
       <RoutineForm
-        onSubmit={handleCreateRoutine}
+        onSubmit={handleCreateOrUpdateRoutine}
         exercisesList={exercisesList} // ahora vienen de localStorage
-      />
+        initialData={editingRoutine} 
+     />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
         {routines.map((routine) => (

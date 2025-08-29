@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function Profile() {
   const [profile, setProfile, removeProfile] = useLocalStorage("profile", null);
-  const [editing, setEditing] = useState(!profile); // si no hay perfil, arranca con formulario
+  const [editing, setEditing] = useState(!profile); 
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -19,7 +19,7 @@ export default function Profile() {
     }
   }, [profile]);
 
-  // Manejo de inputs
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,7 +27,7 @@ export default function Profile() {
     });
   };
 
-  // Guardar perfil
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setProfile(formData);
@@ -35,7 +35,7 @@ export default function Profile() {
     alert("Perfil guardado ✅");
   };
 
-  // Borrar perfil
+
   const handleDelete = () => {
     removeProfile();
     setFormData({ nombre: "", edad: "", estatura: "", peso: "", bio: "" });
@@ -43,7 +43,6 @@ export default function Profile() {
     alert("Perfil eliminado ❌");
   };
 
-  // --- Vista de formulario ---
   if (editing) {
     return (
       <form
@@ -100,7 +99,7 @@ export default function Profile() {
     );
   }
 
-  // --- Vista de tarjeta ---
+
   return (
     <div className="bg-white p-4 rounded shadow-md max-w-sm mx-auto">
       <h2 className="text-xl font-bold mb-2">Mi Perfil</h2>

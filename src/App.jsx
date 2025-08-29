@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -15,7 +15,7 @@ export default function App() {
   const [booted, setBooted] = useState(false);
 
   useEffect(() => {
-    // Inicializa datos mock si no existen
+
     seedData();
     setBooted(true);
   }, []);
