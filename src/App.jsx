@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBar.jsx";
 import Home from "./pages/Home";
 import Perfil from "./pages/Profile";
 import Ejercicios from "./pages/Exercises";
