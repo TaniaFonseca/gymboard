@@ -21,6 +21,15 @@ export default function ExerciseForm({ onSubmit, formData, setFormData, editing 
         className="border p-2 rounded"
         required
       />
+        <input
+        type="text"
+        name="Musculo_objetivo"
+        placeholder="Musculo objetivo"
+        value={formData.Musculo_objetivo}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        className="border p-2 rounded"
+        required
+      />
       <button
         type="submit"
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
