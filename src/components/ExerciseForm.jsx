@@ -9,7 +9,7 @@ export default function ExerciseForm({ onSubmit, formData, setFormData, editing 
         name="name"
         placeholder="Nombre del ejercicio"
         value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
         className="border p-2 rounded"
         required
       />
@@ -26,7 +26,7 @@ export default function ExerciseForm({ onSubmit, formData, setFormData, editing 
         name="Musculo_objetivo"
         placeholder="Musculo objetivo"
         value={formData.Musculo_objetivo}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        onChange={(e) => setFormData({ ...formData, musculo_objetivo : e.target.value })}
         className="border p-2 rounded"
         required
       />

@@ -2,7 +2,7 @@ import { useExercises } from "../domain/useExercises";
 import ExerciseCard from "./ExerciseCard";
 
 export default function ExerciseList() {
-  const { data, loading, error } = useExercises();
+  const { data, loading, error,} = useExercises();
   
   console.log("📦 Data desde hook:", data);
 

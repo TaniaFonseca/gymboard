@@ -11,7 +11,7 @@ import {
 export default function Exercises() {
   const [exercises, setExercises] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [formData, setFormData] = useState({ name: "", description: "" });
+  const [formData, setFormData] = useState({ nombre: "", descripcion: "" });
   const [loading, setLoading] = useState(true);
 
   // --- Cargar datos del backend al montar ---
@@ -49,7 +49,7 @@ export default function Exercises() {
         setExercises([...exercises, data]);
       }
 
-      setFormData({ name: "", description: "" });
+      setFormData({ nombre: "", descripcion: "" });
     } catch (error) {
       console.error("Error al guardar ejercicio:", error);
     }
@@ -65,10 +65,13 @@ export default function Exercises() {
   const handleDelete = async (index) => {
     try {
       const exerciseToDelete = exercises[index];
-      await deleteEjercicio(exerciseToDelete.id);
+      console.log("👉 Ejercicio a eliminar:", exerciseToDelete);
+      console.log("👉 ID enviado al backend:", exerciseToDelete.id_ejercicio);
+      await deleteEjercicio(exerciseToDelete.id_ejercicio);
 
       const filtered = exercises.filter((_, i) => i !== index);
       setExercises(filtered);
+      console.log("✅ Lista después de eliminar:", filtered);
     } catch (error) {
       console.error("Error al eliminar ejercicio:", error);
     }
@@ -91,7 +94,7 @@ export default function Exercises() {
       {/* Lista de tarjetas */}
       <div className="grid gap-4 mt-6">
         {exercises.map((exercise, index) => (
-          <div key={exercise.id || index} className="relative">
+          <div key={exercise.id_ejercicio || index} className="relative">
             <ExerciseCard exercise={exercise} />
             <div className="absolute top-2 right-2 flex gap-2">
               <button
