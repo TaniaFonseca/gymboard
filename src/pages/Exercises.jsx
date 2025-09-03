@@ -11,7 +11,7 @@ import {
 export default function Exercises() {
   const [exercises, setExercises] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [formData, setFormData] = useState({ nombre: "", descripcion: "" });
+  const [formData, setFormData] = useState({ nombre: "", descripcion: "", musculo_objetivo: ""});
   const [loading, setLoading] = useState(true);
 
   // --- Cargar datos del backend al montar ---
@@ -37,7 +37,7 @@ export default function Exercises() {
       if (editingIndex !== null) {
         // 🟡 Editar
         const exerciseToEdit = exercises[editingIndex];
-        const { data } = await updateEjercicio(exerciseToEdit.id, formData);
+        const { data } = await updateEjercicio(exerciseToEdit.id_ejercicio, formData);
 
         const updated = [...exercises];
         updated[editingIndex] = data;
@@ -49,7 +49,7 @@ export default function Exercises() {
         setExercises([...exercises, data]);
       }
 
-      setFormData({ nombre: "", descripcion: "" });
+      setFormData({ nombre: "", descripcion: "", musculo_objetivo: "" });
     } catch (error) {
       console.error("Error al guardar ejercicio:", error);
     }
